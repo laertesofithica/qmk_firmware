@@ -147,7 +147,22 @@ void matrix_scan_user(void) {
 
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
-    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+	switch (get_highest_layer(state)) {
+		case LAYER_RAISE:
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+			break;
+		case LAYER_LOWER:
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_RED);
+			break; 
+		case LAYER_POINTER:
+			charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+			break;
+		default: // for any other layers, or the default layer
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_STARTUP_MODE);
+			break;
+	}
     return state;
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
@@ -169,3 +184,4 @@ void shutdown_user(void) {
     rgb_matrix_update_pwm_buffers();
 #endif // RGB_MATRIX_ENABLE
 }
+

@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_LOWER] = LAYOUT_charybdis_4x6(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_AMPR,    KC_PPLS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_AMPR,    KC_PPLS, KC_UNDS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        RGB_MOD, KC_EXLM,   KC_AT, KC_LBRC, KC_RBRC, KC_PIPE,    KC_PMNS,   KC_P7,   KC_P8,   KC_P9, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_RMOD, KC_PERC, KC_CIRC, KC_LCBR, KC_RCBR, KC_TILD,    KC_PSLS,   KC_P1,   KC_P2,   KC_P3, XXXXXXX, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_P0,
-                                           XXXXXXX, XXXXXXX,    KC_PEQL
+                                           XXXXXXX, XXXXXXX,    KC_EQL
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 

@@ -122,6 +122,16 @@ void matrix_scan_user(void) {
 }
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
+enum charybdis_keymap_layers {
+    LAYER_BASE = 0,
+    LAYER_NUMBER = 1,
+    LAYER_FUNCTION = 2,
+    LAYER_SYMBOLS = 3,
+	LAYER_NAVIGATION = 4,
+	LAYER_MOUSE = 5,
+	LAYER_MEDIA = 6
+};
+
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
 	switch (get_highest_layer(state)) {
@@ -129,11 +139,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
 			rgb_matrix_sethsv_noeeprom(HSV_BLUE);
 			break;
-		case LAYER_SYMBOLS:
+		case LAYER_FUNCTION:
 			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
 			rgb_matrix_sethsv_noeeprom(HSV_RED);
 			break; 
+		case LAYER_SYMBOLS:
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_PURPLE);
+			break; 
 		case LAYER_NAVIGATION:
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_PINK);
+			break; 
+		case LAYER_MEDIA:
+			rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_CYAN);
+			break; 
+		case LAYER_MOUSE:
 			charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
 			break;
 		default: // for any other layers, or the default layer

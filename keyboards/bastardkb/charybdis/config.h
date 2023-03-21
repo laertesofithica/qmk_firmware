@@ -18,6 +18,9 @@
 
 #pragma once
 
+// stuff needed for home row mods
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 200
 
 /* Pointing device configuration. */
 

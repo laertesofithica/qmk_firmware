@@ -18,6 +18,9 @@
 
 #pragma once
 
+// stuff needed for home row mods
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 200
 
 /* Pointing device configuration. */
 
@@ -36,7 +39,7 @@
 /* RGB matrix support. */
 #ifdef RGB_MATRIX_ENABLE
 #    define SPLIT_TRANSPORT_MIRROR
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 100
 #    define RGB_DISABLE_WHEN_USB_SUSPENDED
 #    define RGB_MATRIX_KEYPRESSES
 

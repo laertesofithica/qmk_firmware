@@ -58,8 +58,8 @@
       "LT(6,KC_BSPC)",
       "LT(1,KC_SPC)",
       "LT(2,KC_DEL)",
-      "LT(3,KC_ENT)",
-      "LT(4,KC_TAB)",
+      "LT(3,KC_TAB)",
+      "LT(4,KC_ENT)",
       "KC_NO",
       "KC_NO",
       "LT(5,KC_ESC)"

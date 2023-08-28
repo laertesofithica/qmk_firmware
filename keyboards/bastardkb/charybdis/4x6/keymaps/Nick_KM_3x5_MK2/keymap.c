@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [2] = LAYOUT_charybdis_4x6(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_MOD, RGB_TOG, RGB_RMOD, KC_NO, KC_NO, KC_NO, KC_F7, KC_F8, KC_F9, KC_F10, KC_NO, KC_NO, KC_LSFT, KC_LCTL, KC_LGUI, KC_LALT, KC_NO, KC_NO, KC_F4, KC_F5, KC_F6, KC_F11, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_F1, KC_F2, KC_F3, KC_F12, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_TRNS),
         [3] = LAYOUT_charybdis_4x6(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_UNDS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LPRN, KC_RPRN, KC_QUOT, KC_NO, KC_RALT, KC_RGUI, KC_RCTL, KC_RSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_LBRC, KC_RBRC, KC_BSLS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_TRNS),
         [4] = LAYOUT_charybdis_4x6(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_HOME, KC_UP, KC_END, KC_PGUP, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_NO, KC_RALT, KC_RGUI, KC_RCTL, KC_RSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_TRNS),
-        [5] = LAYOUT_charybdis_4x6(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LSFT, KC_LCTL, KC_LGUI, KC_LALT, KC_NO, KC_NO, KC_RALT, KC_RGUI, KC_RCTL, KC_RSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_BTN3, KC_NO, KC_NO, KC_BTN1, KC_BTN2, KC_NO)
+        [5] = LAYOUT_charybdis_4x6(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_W, DPI_MOD, S_D_MOD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LSFT, KC_LCTL, KC_LGUI, KC_LALT, KC_NO, KC_NO, KC_RALT, KC_RGUI, KC_RCTL, KC_RSFT, KC_NO, KC_NO, KC_NO, DRGSCRL, KC_C, KC_V, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_BTN3, KC_NO, KC_NO, KC_BTN1, KC_BTN2, KC_NO)
 };
 // clang-format on
 
@@ -101,8 +101,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// =======================================================================
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
-    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
-    return state;
+	charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+    switch (get_highest_layer(state)) {
+        case LAYER_BASE:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+            break;
+        case LAYER_NUMBER:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+            break;
+		case LAYER_FUNCTION:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+            break;
+		case LAYER_SYMBOLS:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
+            break;
+		case LAYER_NAVIGATION:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_ORANGE);
+            break;
+		case LAYER_POINTER:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_RED);
+            break;
+		case LAYER_MEDIA:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+			rgb_matrix_sethsv_noeeprom(HSV_TURQUOISE);
+            break;
+        default: // for any other layers, or the default layer
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+            break;
+    }
+  return state;
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
